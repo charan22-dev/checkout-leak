@@ -1,0 +1,6 @@
+Waiting on bqjob_r5374fc3661625c64_000001a216d3cb3a_1 ... (0s) Current status: RUNNING                                                                                      Waiting on bqjob_r5374fc3661625c64_000001a216d3cb3a_1 ... (2s) Current status: RUNNING                                                                                      Waiting on bqjob_r5374fc3661625c64_000001a216d3cb3a_1 ... (2s) Current status: DONE   
++-------------------------------+------------------------+----------------------------+
+| txn_ids_logged_more_than_once | extra_duplicate_events | revenue_double_counted_usd |
++-------------------------------+------------------------+----------------------------+
+|                           326 |                    335 |                    22148.0 |
++-------------------------------+------------------------+----------------------------+
