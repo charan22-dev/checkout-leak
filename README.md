@@ -35,6 +35,8 @@ Source queries and outputs: `sql/00_profiling/`
 | Raw events on 2021-01-31 | 26,489 | ✅ matches raw table |
 | Date range vs Google docs | 1 Nov 2020 – 31 Jan 2021, 92 days | ✅ 92 days |
 | Total events / users | ~4.3M (Google docs) | ✅ 4,295,584 events, 270,154 users |
+| `stg_events` rows = raw − duplicate purchases | 4,295,584 − 335 = 4,295,249 | ✅ dbt test passes |
+| One row per order in `stg_events` | 0 duplicate `transaction_id` | ✅ dbt `unique` test passes |
 
 ## Status
-🚧 In progress: Day 1 done (setup, problem statement, profiling). Next: UNNEST + dbt session model
+🚧 In progress: Day 1 done (setup, problem statement, profiling). Day 2: dbt staging model built and tested. Next: session model + funnel mart

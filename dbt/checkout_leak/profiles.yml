@@ -1,0 +1,11 @@
+checkout_leak:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: charan22-dev-portfolio
+      dataset: checkout_leak
+      location: US
+      threads: 4
+      job_execution_timeout_seconds: 300

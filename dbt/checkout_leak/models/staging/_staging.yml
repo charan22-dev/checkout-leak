@@ -1,0 +1,17 @@
+version: 2
+models:
+  - name: stg_events
+    description: One row per GA4 event, flattened from nested event_params, duplicate purchases removed.
+    columns:
+      - name: session_key
+        data_tests: [not_null]
+      - name: event_name
+        data_tests: [not_null]
+      - name: event_ts
+        data_tests: [not_null]
+      - name: transaction_id
+        description: Unique among identified purchases after deduplication.
+        data_tests:
+          - unique:
+              config:
+                where: "is_identified_purchase"
