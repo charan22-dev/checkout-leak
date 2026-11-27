@@ -37,6 +37,22 @@ Source queries and outputs: `sql/00_profiling/`
 | Total events / users | ~4.3M (Google docs) | ✅ 4,295,584 events, 270,154 users |
 | `stg_events` rows = raw − duplicate purchases | 4,295,584 − 335 = 4,295,249 | ✅ dbt test passes |
 | One row per order in `stg_events` | 0 duplicate `transaction_id` | ✅ dbt `unique` test passes |
+| Funnel never increases step to step | 0 violating rows | ✅ dbt test passes |
+| Mart revenue = staging revenue; mart sessions = staging sessions | exact match | ✅ dbt tests pass |
+| Raw revenue − model revenue | $362,165 − $339,457 = $22,708 removed as duplicates | ✅ explained: keeping the first-logged event per order; some duplicates carry different amounts ($560 more than the keep-largest estimate) |
+
+## Session-level funnel (all traffic, Nov 2020 – Jan 2021)
+| Step | Sessions | Step conversion |
+|---|---|---|
+| All sessions | 360,129 | |
+| View item | 77,318 | 21.5% |
+| Add to cart | 20,338 | 26.3% |
+| Begin checkout | 11,112 | 54.6% |
+| Add shipping | 11,111 | ~100% (auto-fired) |
+| Add payment | 6,818 | 61.4% |
+| Purchase | 4,837 | 70.9% |
+
+**Early read:** inside checkout, the largest leak is shipping → payment (39% of sessions drop). Cart → checkout is 77% by user but 55% by session, so many buyers return in a later visit. Next: segment by device and new vs returning.
 
 ## Status
-🚧 In progress: Day 1 done (setup, problem statement, profiling). Day 2: dbt staging model built and tested. Next: session model + funnel mart
+🚧 In progress: Day 1 done (setup, problem statement, profiling). Day 2: staging, session and funnel models built; 13 dbt checks pass. Next: find the leak by segment

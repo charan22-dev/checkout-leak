@@ -1,0 +1,7 @@
+version: 2
+models:
+  - name: int_sessions
+    description: One row per session (user_pseudo_id + ga_session_id) with funnel step flags.
+    columns:
+      - name: session_key
+        data_tests: [unique, not_null]
